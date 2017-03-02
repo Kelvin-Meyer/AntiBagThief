@@ -18,7 +18,6 @@ Protect your bag with this Arduino setup
 TODO: Write credits
 
 ## TODO's
-1. Get a notification
-]]></content>
+1. Get a notification></content>
   <tabTrigger>readme</tabTrigger>
 </snippet>
