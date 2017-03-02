@@ -1,6 +1,6 @@
 <snippet>
-  <content><![CDATA[
-# ${1:AntiBagThief}
+  <content>
+# Anti Bag Thief
 Protect your bag with this Arduino setup
 ## Installation
 1. Replicate the arduino setup from the drawing
