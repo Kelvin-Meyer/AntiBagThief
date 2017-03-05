@@ -31,7 +31,7 @@ void setup() {
   pinMode(enabledLed, OUTPUT);
   pinMode(buttonPin, INPUT);
 
-  attachInterrupt(digitalPinToInterrupt(2), pushActivationButton, FALLING);
+  attachInterrupt(digitalPinToInterrupt(buttonPin), pushActivationButton, FALLING);
   lastPressedTime = millis();
   digitalWrite(enabledLed,HIGH);
 
@@ -98,7 +98,7 @@ AlarmState active() {
  * @return COOLDOWN when succesful, REPORT otherwise
  */
 AlarmState report() {
-    Serial.println("REPORT state");
+  Serial.println("REPORT state");
   if (enabled) {
     digitalWrite(outputSpeaker, HIGH);
     delay(2500);
@@ -113,8 +113,8 @@ AlarmState report() {
  * @return ACTIVE when done with waiting
  */
 AlarmState cooldown() {
-    Serial.println("COOLDOWN state");
-      digitalWrite(outputCooldownLed, HIGH);
+  Serial.println("COOLDOWN state");
+  digitalWrite(outputCooldownLed, HIGH);
 
   for (int i = 6; i != 0; i--) {
     Serial.print(i);
@@ -155,18 +155,13 @@ int measureMovement() {
  * Switches the enabled boolean, is triggered by an interrupt when the pushActivationButton is pushed
  */
 void pushActivationButton() {
-  
-  //(currentTime < lastPressedTime || (currentTime - lastPressedTime) >= 1000) { //Don't trigger multiple times on one buttonpress
-    Serial.println("Detected buttonpress.");
-    if (enabled) {
-      digitalWrite(enabledLed,LOW);
-      enabled = false;
-    } else {
-      digitalWrite(enabledLed,HIGH);
-      enabled = true;
-    }
-  //}
-  
-  //lastPressedTime = currentTime;
+  Serial.println("Detected buttonpress.");
+  if (enabled) {
+    digitalWrite(enabledLed,LOW);
+    enabled = false;
+  } else {
+    digitalWrite(enabledLed,HIGH);
+    enabled = true;
+  }
 }
 
